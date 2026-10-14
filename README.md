@@ -6,7 +6,7 @@ go-gemini is a library that provides an easy interface to create client ~~and se
 
 **Spec version supported:** v0.16.0, November 14th 2021
 
-This version of the library was forked from [~yotam/go-gemini](https://git.sr.ht/~yotam/go-gemini/) to add additional features, as well as update it to support newer specs. At the time of forking, it had not seen any new commit for 5 months, and was based on v0.9.2. 
+This version of the library was forked from [~yotam/go-gemini](https://git.sr.ht/~yotam/go-gemini/) to add additional features, as well as update it to support newer specs. At the time of forking, it had not seen any new commit for 5 months, and was based on v0.9.2.
 
 **The server part of this library has been removed.** I don't use it and don't want to maintain it.
 
