@@ -2,7 +2,7 @@ package gemini
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/url"
 	"os"
 	"strings"
@@ -22,12 +22,12 @@ func compareResponses(expected, given *Response) (diff string) {
 		return
 	}
 
-	expectedBody, err := ioutil.ReadAll(expected.Body)
+	expectedBody, err := io.ReadAll(expected.Body)
 	if err != nil {
 		return fmt.Sprintf("failed to get expected body: %v", err)
 	}
 
-	givenBody, err := ioutil.ReadAll(given.Body)
+	givenBody, err := io.ReadAll(given.Body)
 	if err != nil {
 		return fmt.Sprintf("failed to get givenponse body: %v", err)
 	}
@@ -41,7 +41,7 @@ func TestGetResponse(t *testing.T) {
 		file     string
 		expected Response
 	}{
-		{"resources/tests/simple_response", Response{20, "text/gemini", ioutil.NopCloser(strings.NewReader("This is the content of the page\r\n")), nil, nil}},
+		{"resources/tests/simple_response", Response{20, "text/gemini", io.NopCloser(strings.NewReader("This is the content of the page\r\n")), nil, nil}},
 	}
 
 	for _, tc := range tests {
@@ -61,18 +61,17 @@ func TestGetResponse(t *testing.T) {
 			t.Fatalf(diff)
 		}
 	}
-
 }
 
 func TestGetResponseEmptyResponse(t *testing.T) {
-	err := getResponse(&Response{}, ioutil.NopCloser(strings.NewReader("")))
+	err := getResponse(&Response{}, io.NopCloser(strings.NewReader("")))
 	if err == nil {
 		t.Fatalf("expected to get an error for empty response, got nil instead")
 	}
 }
 
 func TestGetResponseInvalidStatus(t *testing.T) {
-	err := getResponse(&Response{}, ioutil.NopCloser(strings.NewReader("AA\tmeta\r\n")))
+	err := getResponse(&Response{}, io.NopCloser(strings.NewReader("AA\tmeta\r\n")))
 	if err == nil {
 		t.Fatalf("expected to get an error for invalid status response, got nil instead")
 	}

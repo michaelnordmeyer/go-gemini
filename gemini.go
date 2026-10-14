@@ -79,8 +79,9 @@ func SimplifyStatus(status int) int {
 
 // IsStatusValid checks whether an int status is covered by the spec.
 // Note that:
-//     A client SHOULD deal with undefined status codes
-//     between '10' and '69' per the default action of the initial digit.
+//
+//	A client SHOULD deal with undefined status codes
+//	between '10' and '69' per the default action of the initial digit.
 func IsStatusValid(status int) bool {
 	_, found := statusText[status]
 	return found
@@ -101,8 +102,9 @@ func StatusInRange(status int) bool {
 // but 22 returns 20.
 //
 // This corresponds with the spec:
-//     A client SHOULD deal with undefined status codes
-//     between '10' and '69' per the default action of the initial digit.
+//
+//	A client SHOULD deal with undefined status codes
+//	between '10' and '69' per the default action of the initial digit.
 func CleanStatus(status int) int {
 	// All the functions come together!
 	if !IsStatusValid(status) && StatusInRange(status) {

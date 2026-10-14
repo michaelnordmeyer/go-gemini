@@ -17,6 +17,7 @@ This is mostly a personal library. You might want to check out [go-gemini](https
 go-gemini is in maintenance mode. Bug and spec fixes only. See my [blog post](https://www.makeworld.space/2023/08/bye_gemini.html) for details.
 
 ## Improvements
+
 This fork of the library improves on the original in several ways, some listed above already.
 
 - Client supports self-signed certs sent by the server, but still has other checks like expiry date and hostname
@@ -38,4 +39,5 @@ This library only works with Go 1.15 and higher.
 If you want relatively reliable code, use the latest tag, not the latest commit. Code in the latest master might be untested/buggy. The API might change between tags since it is still v0.
 
 ## License
+
 This library is under the ISC License, see the [LICENSE](./LICENSE) file for details. Portions of this library's code are taken from Go, and are under a different license, which can be found in [LICENSE-GO](./LICENSE-GO). Those files are marked accordingly in their comments.
